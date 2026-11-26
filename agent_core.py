@@ -40,7 +40,8 @@ from tools import (
 # Constants
 # ---------------------------------------------------------------------------
 
-STEP_LIMIT: int = 12  # Maximum agent→tool cycles (must be ≤ 20)
+STEP_LIMIT: int = 12   # Maximum agent→tool cycles (must be ≤ 20)
+CHAT_MODEL: str = "gemini-3.8-flash"  # Google Gemini model (Sep 2026)
 
 SYSTEM_PROMPT: str = """You are the Student Deadline & Study Planner Agent.
 
@@ -105,7 +106,7 @@ def build_agent(api_key: str) -> Any:
         A compiled LangGraph StateGraph.
     """
     llm = ChatGoogleGenerativeAI(
-        model="gemini-2.5-flash",
+        model=CHAT_MODEL,
         google_api_key=api_key,
         temperature=0.2,
     ).bind_tools(_TOOLS)
